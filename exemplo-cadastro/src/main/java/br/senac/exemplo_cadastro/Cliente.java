@@ -23,7 +23,7 @@ public class Cliente {
 		this.id = id;
 	}
 	
-	public void set(String nome) {
+	public void setNome(String nome) {
 		this.nome = nome;
 	}
 	
