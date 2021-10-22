@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.PUT;
@@ -65,4 +66,24 @@ public class ServicoCliente {
 			}
 		}
 	}
+	
+	//Deletando clientes pelo ID
+	@DELETE
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void excluir(@QueryParam("id") int id) {
+		int pos = -1;
+		for (int i = 0; i < lista.size(); i++) {
+			Cliente cliente = lista.get(i);
+			if (cliente.getId() == id) {
+				pos = i;
+				break;
+			}
+		}
+		
+		if(pos >= 0) {
+			lista.remove(pos);
+		}
+	}
+	
+	
 }
