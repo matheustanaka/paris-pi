@@ -6,8 +6,10 @@ import java.util.List;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 
 @Path("cliente")
@@ -27,5 +29,40 @@ public class ServicoCliente {
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Cliente> listar(){
 		return lista;
+	}
+	
+	//Pesquisando clientes pelo Nome
+	@GET
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("pesquisar")
+	public List<Cliente> pesquisar (@QueryParam("nome") String nome){
+		List<Cliente> resultados = new ArrayList<Cliente>();
+		
+		for (int i = 0; i < lista.size(); i++) {
+			Cliente cliente = lista.get(i);
+			//verificando se possui o mesmo nome que o parametro definido
+			if(cliente.getNome().equals(nome)) {
+				resultados.add(cliente);
+			}
+		}
+		return resultados;
+	}
+	
+	//Atualizando os dados do cliente
+	@PUT
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void atualizar(Cliente cliente) {
+		for(int i = 0; i < lista.size(); i++) {
+			Cliente cliBusca = lista.get(i);
+			
+			//Se o ID da busca for igual ao ID do Cliente
+			//Ele retorna o cliente baseado no ID e pede para atualizar os dados (nome e cpf).
+			if(cliBusca.getId() == cliente.getId()) {
+				cliBusca.setNome(cliente.getNome());
+				cliBusca.setCpf(cliente.getCpf());
+				break;
+			}
+		}
 	}
 }
