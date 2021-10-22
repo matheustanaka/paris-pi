@@ -72,12 +72,16 @@ public class ServicoCliente {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void excluir(@QueryParam("id") int id) {
 		int pos = -1;
-		for (int i = 0; i < lista.size(); i++) {
-			Cliente cliente = lista.get(i);
-			if (cliente.getId() == id) {
-				pos = i;
-				break;
+		int contador = 0;
+		
+		boolean encontrado = false;
+		while(contador < lista.size() && !encontrado) {
+			Cliente cliente = lista.get(contador);
+			if(cliente.getId() == id) {
+				pos = contador;
+				encontrado = true;
 			}
+			contador++;
 		}
 		
 		if(pos >= 0) {
