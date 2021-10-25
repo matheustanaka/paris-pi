@@ -3,6 +3,7 @@ package br.senac.exemplo_cadastro.Serviços;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.senac.exemplo_cadastro.DAO.DaoCliente;
 import br.senac.exemplo_cadastro.Modelos.Cliente;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
@@ -23,14 +24,26 @@ public class ServicoCliente {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void inserir(Cliente cliente) {
-		lista.add(cliente);
+		try {
+			DaoCliente.inserirCliente(cliente);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	//Recebendo Clientes
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Cliente> listar(){
-		return lista;
+		try {
+			return DaoCliente.listar();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 	
 	//Pesquisando clientes pelo Nome
