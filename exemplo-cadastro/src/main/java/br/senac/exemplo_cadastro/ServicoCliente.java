@@ -62,6 +62,8 @@ public class ServicoCliente {
 			if(cliBusca.getId() == cliente.getId()) {
 				cliBusca.setNome(cliente.getNome());
 				cliBusca.setCpf(cliente.getCpf());
+				cliBusca.setEmail(cliente.getEmail());
+				cliBusca.setSenha(cliente.getSenha());
 				break;
 			}
 		}
