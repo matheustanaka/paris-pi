@@ -1,4 +1,4 @@
-package br.senac.exemplo_cadastro;
+package br.senac.exemplo_cadastro.Modelos;
 
 public class Cliente {
 	private int id;

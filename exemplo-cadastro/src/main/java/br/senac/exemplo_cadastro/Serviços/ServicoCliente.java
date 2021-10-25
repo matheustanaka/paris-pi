@@ -1,8 +1,9 @@
-package br.senac.exemplo_cadastro;
+package br.senac.exemplo_cadastro.Serviços;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import br.senac.exemplo_cadastro.Modelos.Cliente;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;

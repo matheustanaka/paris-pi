@@ -1,4 +1,4 @@
-package br.senac.exemplo_cadastro;
+package br.senac.exemplo_cadastro.BancoDeDados;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
