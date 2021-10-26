@@ -27,7 +27,6 @@ public class ServicoCliente {
 		try {
 			DaoCliente.inserirCliente(cliente);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -39,7 +38,6 @@ public class ServicoCliente {
 		try {
 			return DaoCliente.listar();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -52,34 +50,23 @@ public class ServicoCliente {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("pesquisar")
 	public List<Cliente> pesquisar (@QueryParam("nome") String nome){
-		List<Cliente> resultados = new ArrayList<Cliente>();
-		
-		for (int i = 0; i < lista.size(); i++) {
-			Cliente cliente = lista.get(i);
-			//verificando se possui o mesmo nome que o parametro definido
-			if(cliente.getNome().equals(nome)) {
-				resultados.add(cliente);
-			}
+		try {
+			return DaoCliente.pesquisar(nome);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		return resultados;
+		
+		return null;
 	}
 	
 	//Atualizando os dados do cliente
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void atualizar(Cliente cliente) {
-		for(int i = 0; i < lista.size(); i++) {
-			Cliente cliBusca = lista.get(i);
-			
-			//Se o ID da busca for igual ao ID do Cliente
-			//Ele retorna o cliente baseado no ID e pede para atualizar os dados (nome e cpf).
-			if(cliBusca.getId() == cliente.getId()) {
-				cliBusca.setNome(cliente.getNome());
-				cliBusca.setCpf(cliente.getCpf());
-				cliBusca.setEmail(cliente.getEmail());
-				cliBusca.setSenha(cliente.getSenha());
-				break;
-			}
+		try {
+			DaoCliente.atualizar(cliente);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	
@@ -87,23 +74,11 @@ public class ServicoCliente {
 	@DELETE
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void excluir(@QueryParam("id") int id) {
-		int pos = -1;
-		int contador = 0;
-		
-		boolean encontrado = false;
-		while(contador < lista.size() && !encontrado) {
-			Cliente cliente = lista.get(contador);
-			if(cliente.getId() == id) {
-				pos = contador;
-				encontrado = true;
-			}
-			contador++;
-		}
-		
-		if(pos >= 0) {
-			lista.remove(pos);
+		try {
+			DaoCliente.excluir(id);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
-	
 	
 }
