@@ -1,6 +1,6 @@
 <h1 align="center">Paris Clothes</h1>
 
-## Table of Contents
+## Tabela de Conteúdos
 
 - [Sobre](#Sobre)
 - [Tecnologias](#Tecnologias)
