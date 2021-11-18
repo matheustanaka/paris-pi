@@ -12,44 +12,33 @@ import br.senac.exemplo_cadastro.Modelos.Cliente;
 import br.senac.exemplo_cadastro.Modelos.Roupas;
 
 public class DaoRoupas {
-	
-	public static List<Roupas> listRoupasById(int id) throws Exception{
-
-		String sql = "SELECT r.roupa_id, "
-				+ "	   cli.id, "
-				+ "	   r.tipo_roupa, "
-				+ "	   r.marca, "
-				+ "	   r.tamanho, "
-				+ "	   r.quantidade "
-				+ "FROM roupas r "
-				+ "JOIN cliente cli ON r.id = cli.id "
-				+ "WHERE cli.id = ?";
-		
-		List<Roupas> resultado = new ArrayList<Roupas>();
-		
-		try (PreparedStatement ps = DB.connect().prepareStatement(sql)) {
-			ps.setInt(1, id);
+	//Recebendo as roupas (GET)
+		public static List<Roupas> listarRoupas() throws Exception {
+			String sql = "SELECT * FROM roupas";
 			
-			ResultSet rs = ps.executeQuery();
+			List<Roupas> resultados = new ArrayList<Roupas>();
 			
-			while(rs.next()) {
-				Roupas roupas = new Roupas();
+			try (PreparedStatement ps = DB.connect().prepareStatement(sql)) {
+				ResultSet rs = ps.executeQuery();
 				
-				roupas.setRoupaId(rs.getInt("roupa_id"));
-				roupas.setMarca(rs.getString("marca"));
-				roupas.setQuantidade(rs.getInt("quantidade"));
-				roupas.setTamanho(rs.getString("tamanho"));
-				roupas.setTipoRoupa(rs.getString("tipo_roupa"));
-				
-				resultado.add(roupas);
-				
+				while(rs.next()) {
+					Roupas roupas = new Roupas ();
+					
+					roupas.setRoupaId(rs.getInt("roupa_id"));
+					roupas.setMarca(rs.getString("marca"));
+					roupas.setQuantidade(rs.getInt("quantidade"));
+					roupas.setTamanho(rs.getString("tamanho"));
+					roupas.setTipoRoupa(rs.getString("tipo_roupa"));
+					
+					resultados.add(roupas);
+					
+				}
 			}
 			
-			return resultado;
+			return resultados;
 		}
-		
-	}
 	
+	//Inserindo Roupas (POST)
 	public static void inserirRoupas(Roupas roupas, int id) throws Exception {
 		
 		String sql = "INSERT INTO roupas (tipo_roupa, marca, tamanho, quantidade, id) VALUES (?, ?, ?, ?, ?)" ;
@@ -66,7 +55,7 @@ public class DaoRoupas {
 			
 		}
 	}
-	
+	//Deletando as Roupas pelo ID (DELETE)
 	public static void excluirRoupas(int id) throws Exception {
 		
 		String sql = "DELETE FROM roupas WHERE roupa_id = ?" ;
@@ -80,30 +69,5 @@ public class DaoRoupas {
 		}
 	}
 	
-	//recebendo todos as roupas
-	public static List<Roupas> listarRoupas() throws Exception {
-		String sql = "SELECT * FROM roupas";
-		
-		List<Roupas> resultados = new ArrayList<Roupas>();
-		
-		try (PreparedStatement ps = DB.connect().prepareStatement(sql)) {
-			ResultSet rs = ps.executeQuery();
-			
-			while(rs.next()) {
-				Roupas roupas = new Roupas ();
-				
-				roupas.setRoupaId(rs.getInt("roupa_id"));
-				roupas.setMarca(rs.getString("marca"));
-				roupas.setQuantidade(rs.getInt("quantidade"));
-				roupas.setTamanho(rs.getString("tamanho"));
-				roupas.setTipoRoupa(rs.getString("tipo_roupa"));
-				
-				resultados.add(roupas);
-				
-			}
-		}
-		
-		return resultados;
-	}
-
+	
 }
