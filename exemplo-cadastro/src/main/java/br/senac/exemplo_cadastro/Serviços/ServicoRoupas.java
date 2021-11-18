@@ -20,18 +20,6 @@ import jakarta.ws.rs.core.MediaType;
 
 @Path("roupas")
 public class ServicoRoupas {
-	//Recebendo Roupas
-	@GET
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Path("list")
-	public List<Roupas> listRoupasById(@QueryParam("id") int id){
-		try {
-			return DaoRoupas.listRoupasById(id);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
 	//Inserindo Roupas
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -52,7 +40,6 @@ public class ServicoRoupas {
 			e.printStackTrace();
 		}
 	}
-	
 	//Recebendo Roupas
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
