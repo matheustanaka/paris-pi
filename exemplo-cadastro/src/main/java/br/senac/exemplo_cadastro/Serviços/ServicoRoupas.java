@@ -20,7 +20,7 @@ import jakarta.ws.rs.core.MediaType;
 
 @Path("roupas")
 public class ServicoRoupas {
-	
+	//Recebendo Roupas
 	@GET
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("list")
@@ -32,7 +32,7 @@ public class ServicoRoupas {
 		}
 		return null;
 	}
-	
+	//Inserindo Roupas
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void inserirRoupas(Roupas roupa, @QueryParam("id") int id) {
@@ -42,7 +42,7 @@ public class ServicoRoupas {
 			e.printStackTrace();
 		}
 	}
-	
+	//Deletando Roupas
 	@DELETE
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void excluirRoupas(@QueryParam("id") int id) {
@@ -52,5 +52,17 @@ public class ServicoRoupas {
 			e.printStackTrace();
 		}
 	}
-
+	
+	//Recebendo Roupas
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Roupas> listarRoupas(){
+		try {
+			return DaoRoupas.listarRoupas();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
 }
