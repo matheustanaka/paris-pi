@@ -55,6 +55,23 @@ public class DaoRoupas {
 			
 		}
 	}
+	//Atualizando os dados da roupa (UPDATE)
+	public static void atualizarRoupas(Roupas roupas) throws Exception{
+		
+		String sql = "UPDATE roupas SET tipo_roupa = ?, marca = ?, tamanho = ?, quantidade = ? WHERE roupa_id = ?";
+		
+		try (PreparedStatement ps = DB.connect().prepareStatement(sql)) {
+			
+			ps.setString(1, roupas.getTipoRoupa());
+			ps.setString(2, roupas.getMarca());
+			ps.setString(3, roupas.getTamanho());
+			ps.setInt(4, roupas.getQuantidade());
+			ps.setInt(5, roupas.getRoupaId());
+			
+			ps.execute();
+		}
+	}
+	
 	//Deletando as Roupas pelo ID (DELETE)
 	public static void excluirRoupas(int id) throws Exception {
 		
