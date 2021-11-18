@@ -42,7 +42,7 @@ public class ServicoRoupas {
 			e.printStackTrace();
 		}
 	}
-	//Atualizando os dados do cliente
+	//Atualizando os dados da roupa
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void atualizarRoupas(Roupas roupas) {
