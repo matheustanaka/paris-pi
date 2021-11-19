@@ -9,26 +9,27 @@ import java.util.List;
 
 import br.senac.exemplo_cadastro.BancoDeDados.DB;
 import br.senac.exemplo_cadastro.Modelos.Cliente;
-import br.senac.exemplo_cadastro.Modelos.Roupas;
+import br.senac.exemplo_cadastro.Modelos.Roupa;
 
 public class DaoRoupas {
 	//Recebendo as roupas (GET)
-		public static List<Roupas> listarRoupas() throws Exception {
+		public static List<Roupa> listarRoupas() throws Exception {
 			String sql = "SELECT * FROM roupas";
 			
-			List<Roupas> resultados = new ArrayList<Roupas>();
+			List<Roupa> resultados = new ArrayList<Roupa>();
 			
 			try (PreparedStatement ps = DB.connect().prepareStatement(sql)) {
 				ResultSet rs = ps.executeQuery();
 				
 				while(rs.next()) {
-					Roupas roupas = new Roupas ();
+					Roupa roupas = new Roupa ();
 					
-					roupas.setRoupaId(rs.getInt("roupa_id"));
-					roupas.setMarca(rs.getString("marca"));
-					roupas.setQuantidade(rs.getInt("quantidade"));
-					roupas.setTamanho(rs.getString("tamanho"));
-					roupas.setTipoRoupa(rs.getString("tipo_roupa"));
+					roupas.setRoupaId(rs.getInt("ID"));
+					roupas.setMarca(rs.getString("Marca"));
+					roupas.setQuantidade(rs.getInt("Quantidade"));
+					roupas.setTamanho(rs.getString("Tamanho"));
+					roupas.setTipoRoupa(rs.getString("Tipo"));
+					roupas.setPreco(rs.getFloat("Preco"));
 					
 					resultados.add(roupas);
 					
@@ -39,9 +40,9 @@ public class DaoRoupas {
 		}
 	
 	//Inserindo Roupas (POST)
-	public static void inserirRoupas(Roupas roupas, int id) throws Exception {
+	public static void inserirRoupas(Roupa roupas) throws Exception {
 		
-		String sql = "INSERT INTO roupas (tipo_roupa, marca, tamanho, quantidade, id) VALUES (?, ?, ?, ?, ?)" ;
+		String sql = "INSERT INTO roupas (Tipo, Marca, Tamanho, Quantidade, Preco) VALUES (?, ?, ?, ?, ?)" ;
 		
 		try (PreparedStatement ps = DB.connect().prepareStatement(sql)) {
 			
@@ -49,16 +50,16 @@ public class DaoRoupas {
 			ps.setString(2, roupas.getMarca());
 			ps.setString(3, roupas.getTamanho());
 			ps.setInt(4, roupas.getQuantidade());
-			ps.setInt(5, id);
+			ps.setFloat(5, roupas.getPreco());
 			
 			ps.execute();
 			
 		}
 	}
 	//Atualizando os dados da roupa (UPDATE)
-	public static void atualizarRoupas(Roupas roupas) throws Exception{
+	public static void atualizarRoupas(Roupa roupas) throws Exception{
 		
-		String sql = "UPDATE roupas SET tipo_roupa = ?, marca = ?, tamanho = ?, quantidade = ? WHERE roupa_id = ?";
+		String sql = "UPDATE roupas SET Tipo = ?, Marca = ?, Tamanho = ?, Quantidade = ?, Preco = ?, WHERE ID = ?";
 		
 		try (PreparedStatement ps = DB.connect().prepareStatement(sql)) {
 			
@@ -66,7 +67,9 @@ public class DaoRoupas {
 			ps.setString(2, roupas.getMarca());
 			ps.setString(3, roupas.getTamanho());
 			ps.setInt(4, roupas.getQuantidade());
-			ps.setInt(5, roupas.getRoupaId());
+			ps.setFloat(5, roupas.getPreco());
+			ps.setInt(6, roupas.getRoupaId());
+			
 			
 			ps.execute();
 		}
@@ -75,7 +78,7 @@ public class DaoRoupas {
 	//Deletando as Roupas pelo ID (DELETE)
 	public static void excluirRoupas(int id) throws Exception {
 		
-		String sql = "DELETE FROM roupas WHERE roupa_id = ?" ;
+		String sql = "DELETE FROM roupas WHERE ID = ?" ;
 		
 		try (PreparedStatement ps = DB.connect().prepareStatement(sql)) {
 			
