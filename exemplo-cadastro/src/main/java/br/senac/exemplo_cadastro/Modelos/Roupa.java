@@ -1,12 +1,13 @@
 package br.senac.exemplo_cadastro.Modelos;
 
-public class Roupas {
+public class Roupa {
 	
 	private int roupaId;
 	private String tipoRoupa;
 	private String marca;
 	private String tamanho;
 	private int quantidade;
+	private float preco;
 	
 	
 	
@@ -39,6 +40,12 @@ public class Roupas {
 	}
 	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
+	}
+	public float getPreco() {
+		return preco;
+	}
+	public void setPreco(float preco) {
+		this.preco = preco;
 	}
 
 }
