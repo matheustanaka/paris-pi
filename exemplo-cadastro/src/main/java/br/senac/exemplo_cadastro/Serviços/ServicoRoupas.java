@@ -7,7 +7,7 @@ import java.util.List;
 import br.senac.exemplo_cadastro.DAO.DaoCliente;
 import br.senac.exemplo_cadastro.DAO.DaoRoupas;
 import br.senac.exemplo_cadastro.Modelos.Cliente;
-import br.senac.exemplo_cadastro.Modelos.Roupas;
+import br.senac.exemplo_cadastro.Modelos.Roupa;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
@@ -23,7 +23,7 @@ public class ServicoRoupas {
 	//Recebendo Roupas
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Roupas> listarRoupas(){
+	public List<Roupa> listarRoupas(){
 		try {
 			return DaoRoupas.listarRoupas();
 		} catch (Exception e) {
@@ -35,9 +35,9 @@ public class ServicoRoupas {
 	//Inserindo Roupas
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void inserirRoupas(Roupas roupa, @QueryParam("id") int id) {
+	public void inserirRoupas(Roupa roupa) {
 		try {
-			DaoRoupas.inserirRoupas(roupa, id);
+			DaoRoupas.inserirRoupas(roupa);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -45,7 +45,7 @@ public class ServicoRoupas {
 	//Atualizando os dados da roupa
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void atualizarRoupas(Roupas roupas) {
+	public void atualizarRoupas(Roupa roupas) {
 		try {
 			DaoRoupas.atualizarRoupas(roupas);
 		} catch (Exception e) {
