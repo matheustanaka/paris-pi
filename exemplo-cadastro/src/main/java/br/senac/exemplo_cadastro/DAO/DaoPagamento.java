@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.senac.exemplo_cadastro.BancoDeDados.DB;
-import br.senac.exemplo_cadastro.Modelos.Cliente;
 import br.senac.exemplo_cadastro.Modelos.Pagamento;
 
 public class DaoPagamento {
@@ -57,7 +56,7 @@ public class DaoPagamento {
 	
 	public static void atualizarPagamento(Pagamento pagamento) throws Exception{
 		
-		String sql = "UPDATE cliente SET pagamento = ?";
+		String sql = "UPDATE pagamento SET pagamento = ?";
 		
 		try (PreparedStatement ps = DB.connect().prepareStatement(sql)) {
 			
