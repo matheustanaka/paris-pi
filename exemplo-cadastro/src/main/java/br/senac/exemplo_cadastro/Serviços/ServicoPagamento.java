@@ -75,9 +75,9 @@ public class ServicoPagamento {
 		//Deletando clientes pelo ID
 		@DELETE
 		@Consumes(MediaType.APPLICATION_JSON)
-		public void excluir(@QueryParam("id") int id) {
+		public void excluirPagamento(@QueryParam("id") int id) {
 			try {
-				DaoCliente.excluir(id);
+				DaoPagamento.excluirPagamento(id);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
