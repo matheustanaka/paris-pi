@@ -2,18 +2,26 @@ package br.senac.exemplo_cadastro.Modelos;
 
 public class ItemVenda {
 	private Roupa roupa;
-	private int quantidade;
+	private int quantidadeVendida;
+	private float preco;
+	
 	public Roupa getRoupa() {
 		return roupa;
 	}
 	public void setRoupa(Roupa roupa) {
 		this.roupa = roupa;
 	}
-	public int getQuantidade() {
-		return quantidade;
+	public int getQuantidadeVendida() {
+		return quantidadeVendida;
 	}
-	public void setQuantidade(int quantidade) {
-		this.quantidade = quantidade;
+	public void setQuantidadeVendida(int quantidadeVendida) {
+		this.quantidadeVendida = quantidadeVendida;
+	}
+	public float getPreco() {
+		return preco;
+	}
+	public void setPreco(float preco) {
+		this.preco = preco;
 	}
 	
 }
