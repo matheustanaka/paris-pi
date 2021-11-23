@@ -46,14 +46,14 @@ public class ServicoPagamento {
 			return null;
 		}
 		
-		//Pesquisando clientes pelo Nome
+		//Pesquisando pagamento pelo tipo de pagamento
 		@GET
 		@Consumes(MediaType.APPLICATION_JSON)
 		@Produces(MediaType.APPLICATION_JSON)
 		@Path("pesquisar")
-		public List<Cliente> pesquisar (@QueryParam("nome") String nome){
+		public List<Pagamento> pesquisar (@QueryParam("tipoPagamento") String tipoPagamento){
 			try {
-				return DaoCliente.pesquisar(nome);
+				return DaoPagamento.pesquisarPagamento(tipoPagamento);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

@@ -67,15 +67,15 @@ public class DaoPagamento {
 		}
 	}
 	
-	public static List<Pagamento> pesquisarPagamento(String pagamento) throws Exception{
+	public static List<Pagamento> pesquisarPagamento(String tipoPagamento) throws Exception{
 		
-		String sql = "SELECT * FROM cliente WHERE nome LIKE ?";
+		String sql = "SELECT * FROM pagamento WHERE pagamento LIKE ?";
 		
 		List<Pagamento> resultados = new ArrayList<Pagamento>();
 
 		
 		try (PreparedStatement ps = DB.connect().prepareStatement(sql)) {
-			ps.setString(1, "%" + pagamento + "%");
+			ps.setString(1, "%" + tipoPagamento + "%");
 			
 			ResultSet rs = ps.executeQuery();
 			
