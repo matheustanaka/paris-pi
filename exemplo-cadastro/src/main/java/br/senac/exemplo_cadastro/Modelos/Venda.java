@@ -4,7 +4,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class Venda {
-	private int id;
+	private Integer id;
+	private Integer numero_venda;
 	private LocalDate dataVenda;
 	private List<ItemVenda> itensVendidos;
 	
@@ -26,6 +27,12 @@ public class Venda {
 	}
 	public void setDataVenda(LocalDate dataVenda) {
 		this.dataVenda = dataVenda;
+	}
+	public Integer getNumero_venda() {
+		return numero_venda;
+	}
+	public void setNumero_venda(Integer numero_venda) {
+		this.numero_venda = numero_venda;
 	}
 	
 }
