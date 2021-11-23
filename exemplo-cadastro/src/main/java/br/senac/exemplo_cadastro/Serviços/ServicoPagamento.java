@@ -72,7 +72,7 @@ public class ServicoPagamento {
 			}
 		}
 		
-		//Deletando clientes pelo ID
+		//Deletando pagameto pelo ID
 		@DELETE
 		@Consumes(MediaType.APPLICATION_JSON)
 		public void excluirPagamento(@QueryParam("id") int id) {
