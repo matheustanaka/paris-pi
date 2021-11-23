@@ -51,7 +51,7 @@ public class ServicoPagamento {
 		@Consumes(MediaType.APPLICATION_JSON)
 		@Produces(MediaType.APPLICATION_JSON)
 		@Path("pesquisar")
-		public List<Pagamento> pesquisar (@QueryParam("tipoPagamento") String tipoPagamento){
+		public List<Pagamento> pesquisarPagamento(@QueryParam("tipoPagamento") String tipoPagamento){
 			try {
 				return DaoPagamento.pesquisarPagamento(tipoPagamento);
 			} catch (Exception e) {
