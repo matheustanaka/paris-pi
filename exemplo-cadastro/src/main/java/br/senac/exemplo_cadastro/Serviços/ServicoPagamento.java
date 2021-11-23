@@ -61,12 +61,12 @@ public class ServicoPagamento {
 			return null;
 		}
 		
-		//Atualizando os dados do cliente
+		//Atualizando os dados de Pagamento
 		@PUT
 		@Consumes(MediaType.APPLICATION_JSON)
-		public void atualizar(Cliente cliente) {
+		public void atualizar(Pagamento pagamento) {
 			try {
-				DaoCliente.atualizar(cliente);
+				DaoPagamento.atualizarPagamento(pagamento);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
