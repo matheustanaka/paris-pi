@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Venda {
 	private Integer id;
-	private Integer numero_venda;
+	private Integer numeroVenda;
 	private LocalDate dataVenda;
 	private List<ItemVenda> itensVendidos;
 	
@@ -28,11 +28,11 @@ public class Venda {
 	public void setDataVenda(LocalDate dataVenda) {
 		this.dataVenda = dataVenda;
 	}
-	public Integer getNumero_venda() {
-		return numero_venda;
+	public Integer getNumeroVenda() {
+		return numeroVenda;
 	}
-	public void setNumero_venda(Integer numero_venda) {
-		this.numero_venda = numero_venda;
+	public void setNumeroVenda(Integer numeroVenda) {
+		this.numeroVenda = numeroVenda;
 	}
 	
 }
