@@ -64,7 +64,7 @@ public class ServicoPagamento {
 		//Atualizando os dados de Pagamento
 		@PUT
 		@Consumes(MediaType.APPLICATION_JSON)
-		public void atualizar(Pagamento pagamento) {
+		public void atualizarPagamento(Pagamento pagamento) {
 			try {
 				DaoPagamento.atualizarPagamento(pagamento);
 			} catch (Exception e) {
