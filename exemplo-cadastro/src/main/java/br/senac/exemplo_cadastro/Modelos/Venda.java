@@ -9,6 +9,7 @@ public class Venda {
 	private LocalDate dataVenda;
 	private List<ItemVenda> itensVendidos;
 	private Cliente cliente;
+	private Pagamento pagamento;
 	
 	public List<ItemVenda> getItensVendidos() {
 		return itensVendidos;
@@ -40,6 +41,12 @@ public class Venda {
 	}
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
+	}
+	public Pagamento getPagamento() {
+		return pagamento;
+	}
+	public void setPagamento(Pagamento pagamento) {
+		this.pagamento = pagamento;
 	}
 	
 }
