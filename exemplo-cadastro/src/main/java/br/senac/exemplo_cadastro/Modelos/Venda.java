@@ -8,6 +8,7 @@ public class Venda {
 	private Integer numeroVenda;
 	private LocalDate dataVenda;
 	private List<ItemVenda> itensVendidos;
+	private Cliente cliente;
 	
 	public List<ItemVenda> getItensVendidos() {
 		return itensVendidos;
@@ -33,6 +34,12 @@ public class Venda {
 	}
 	public void setNumeroVenda(Integer numeroVenda) {
 		this.numeroVenda = numeroVenda;
+	}
+	public Cliente getCliente() {
+		return cliente;
+	}
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 	
 }
