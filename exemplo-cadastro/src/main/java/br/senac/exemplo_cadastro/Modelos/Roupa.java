@@ -8,6 +8,7 @@ public class Roupa {
 	private String tamanho;
 	private int quantidade;
 	private float preco;
+	private int estoque;
 	
 	
 	
@@ -46,6 +47,12 @@ public class Roupa {
 	}
 	public void setPreco(float preco) {
 		this.preco = preco;
+	}
+	public int getEstoque() {
+		return estoque;
+	}
+	public void setEstoque(int estoque) {
+		this.estoque = estoque;
 	}
 
 }
