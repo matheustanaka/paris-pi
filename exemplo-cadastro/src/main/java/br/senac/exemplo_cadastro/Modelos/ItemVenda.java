@@ -3,7 +3,7 @@ package br.senac.exemplo_cadastro.Modelos;
 public class ItemVenda {
 	private Roupa roupa;
 	private int quantidadeVendida;
-	private float preco;
+	private float precoVendido;
 	
 	public Roupa getRoupa() {
 		return roupa;
@@ -17,11 +17,11 @@ public class ItemVenda {
 	public void setQuantidadeVendida(int quantidadeVendida) {
 		this.quantidadeVendida = quantidadeVendida;
 	}
-	public float getPreco() {
-		return preco;
+	public float getPrecoVendido() {
+		return precoVendido;
 	}
-	public void setPreco(float preco) {
-		this.preco = preco;
+	public void setPrecoVendido(float precoVendido) {
+		this.precoVendido = precoVendido;
 	}
 	
 }
