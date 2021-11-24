@@ -29,7 +29,7 @@ public class DaoRoupas {
 					roupas.setQuantidade(rs.getInt("Quantidade"));
 					roupas.setTamanho(rs.getString("Tamanho"));
 					roupas.setTipoRoupa(rs.getString("Tipo"));
-					roupas.setTipoRoupa(rs.getString("Estoque"));
+					roupas.setEstoque(rs.getInt("Estoque"));
 					roupas.setPreco(rs.getFloat("Preco"));
 					
 					resultados.add(roupas);
