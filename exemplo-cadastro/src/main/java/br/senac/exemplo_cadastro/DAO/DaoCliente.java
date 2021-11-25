@@ -37,7 +37,7 @@ public class DaoCliente {
 			while(rs.next()) {
 				Cliente cliente = new Cliente ();
 				
-				cliente.setId(rs.getInt("id"));
+				cliente.setId(rs.getInt("id_cliente"));
 				cliente.setNome(rs.getString("nome"));
 				cliente.setCpf(rs.getString("cpf"));
 				cliente.setEmail(rs.getString("email"));
@@ -64,7 +64,7 @@ public class DaoCliente {
 	
 	public static void atualizar(Cliente cliente) throws Exception{
 		
-		String sql = "UPDATE cliente SET nome = ?, cpf = ?, email = ?, senha = ? WHERE id = ?";
+		String sql = "UPDATE cliente SET nome = ?, cpf = ?, email = ?, senha = ? WHERE id_cliente = ?";
 		
 		try (PreparedStatement ps = DB.connect().prepareStatement(sql)) {
 			
@@ -93,7 +93,7 @@ public class DaoCliente {
 			while(rs.next()) {
 				Cliente cliente = new Cliente ();
 				
-				cliente.setId(rs.getInt("id"));
+				cliente.setId(rs.getInt("id_cliente"));
 				cliente.setNome(rs.getString("nome"));
 				cliente.setCpf(rs.getString("cpf"));
 				cliente.setEmail(rs.getString("email"));
