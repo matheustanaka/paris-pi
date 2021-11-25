@@ -55,7 +55,7 @@ public class ServicoRoupas {
 	//Deletando Roupas
 	@DELETE
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void excluirRoupas(@QueryParam("id") int id) {
+	public void excluirRoupas(@QueryParam("id_roupa") int id) {
 		try {
 			DaoRoupas.excluirRoupas(id);
 		} catch (Exception e) {
