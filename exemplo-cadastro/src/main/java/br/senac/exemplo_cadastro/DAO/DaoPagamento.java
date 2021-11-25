@@ -32,7 +32,7 @@ public class DaoPagamento {
 			while(rs.next()) {
 				Pagamento pagamento = new Pagamento ();
 				
-				pagamento.setId(rs.getInt("id_pagamento"));
+				pagamento.setId_pagamento(rs.getInt("id_pagamento"));
 				pagamento.setTipoPagamento(rs.getString("tipoPagamento"));
 				
 				resultados.add(pagamento);
@@ -81,7 +81,7 @@ public class DaoPagamento {
 			while(rs.next()) {
 				Pagamento pagamento_list = new Pagamento ();
 				
-				pagamento_list.setId(rs.getInt("id_pagamento"));
+				pagamento_list.setId_pagamento(rs.getInt("id_pagamento"));
 				pagamento_list.setTipoPagamento(rs.getString("tipoPagamento"));
 
 				
