@@ -41,7 +41,7 @@ public class DaoVenda {
 		   try(PreparedStatement ps = DB.connect().prepareStatement(sql)) {
 			   
 			   ps.setInt(1, idVenda);
-			   ps.setInt(2, itemVendido.getRoupa().getRoupaId());
+			   ps.setInt(2, itemVendido.getRoupa().getId_roupa());
 			   ps.setInt(3, itemVendido.getQuantidadeVendida());
 			   ps.setFloat(4, itemVendido.getPrecoVendido());
 			   
