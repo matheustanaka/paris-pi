@@ -24,7 +24,7 @@ public class DaoRoupas {
 				while(rs.next()) {
 					Roupa roupas = new Roupa ();
 					
-					roupas.setRoupaId(rs.getInt("ID"));
+					roupas.setRoupaId(rs.getInt("id_roupa"));
 					roupas.setMarca(rs.getString("Marca"));
 					roupas.setQuantidade(rs.getInt("Quantidade"));
 					roupas.setTamanho(rs.getString("Tamanho"));
@@ -61,7 +61,7 @@ public class DaoRoupas {
 	//Atualizando os dados da roupa (UPDATE)
 	public static void atualizarRoupas(Roupa roupas) throws Exception{
 		
-		String sql = "UPDATE roupa SET Tipo = ?, Marca = ?, Tamanho = ?, Quantidade = ?, Preco = ?, estoque = ?, WHERE ID = ?";
+		String sql = "UPDATE roupa SET Tipo = ?, Marca = ?, Tamanho = ?, Quantidade = ?, Preco = ?, estoque = ?, WHERE id_roupa = ?";
 		
 		try (PreparedStatement ps = DB.connect().prepareStatement(sql)) {
 			
@@ -81,7 +81,7 @@ public class DaoRoupas {
 	//Deletando as Roupas pelo ID (DELETE)
 	public static void excluirRoupas(int id) throws Exception {
 		
-		String sql = "DELETE FROM roupa WHERE ID = ?" ;
+		String sql = "DELETE FROM roupa WHERE id_roupa = ?" ;
 		
 		try (PreparedStatement ps = DB.connect().prepareStatement(sql)) {
 			
