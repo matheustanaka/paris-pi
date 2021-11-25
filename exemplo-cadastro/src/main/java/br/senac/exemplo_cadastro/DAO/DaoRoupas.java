@@ -24,7 +24,7 @@ public class DaoRoupas {
 				while(rs.next()) {
 					Roupa roupas = new Roupa ();
 					
-					roupas.setRoupaId(rs.getInt("id_roupa"));
+					roupas.setId_roupa(rs.getInt("id_roupa"));
 					roupas.setMarca(rs.getString("Marca"));
 					roupas.setQuantidade(rs.getInt("Quantidade"));
 					roupas.setTamanho(rs.getString("Tamanho"));
@@ -61,7 +61,7 @@ public class DaoRoupas {
 	//Atualizando os dados da roupa (UPDATE)
 	public static void atualizarRoupas(Roupa roupas) throws Exception{
 		
-		String sql = "UPDATE roupa SET Tipo = ?, Marca = ?, Tamanho = ?, Quantidade = ?, Preco = ?, estoque = ?, WHERE id_roupa = ?";
+		String sql = "UPDATE roupa SET Tipo = ?, Marca = ?, Tamanho = ?, Quantidade = ?, Preco = ?, estoque = ? WHERE id_roupa = ?";
 		
 		try (PreparedStatement ps = DB.connect().prepareStatement(sql)) {
 			
@@ -71,7 +71,7 @@ public class DaoRoupas {
 			ps.setInt(4, roupas.getQuantidade());
 			ps.setFloat(5, roupas.getPreco());
 			ps.setInt(6, roupas.getEstoque());
-			ps.setInt(7, roupas.getRoupaId());
+			ps.setInt(7, roupas.getId_roupa());
 			
 			
 			ps.execute();
