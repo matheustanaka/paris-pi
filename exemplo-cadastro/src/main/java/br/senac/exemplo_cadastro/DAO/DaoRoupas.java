@@ -14,7 +14,7 @@ import br.senac.exemplo_cadastro.Modelos.Roupa;
 public class DaoRoupas {
 	//Recebendo as roupas (GET)
 		public static List<Roupa> listarRoupas() throws Exception {
-			String sql = "SELECT * FROM roupas";
+			String sql = "SELECT * FROM roupa";
 			
 			List<Roupa> resultados = new ArrayList<Roupa>();
 			
@@ -43,7 +43,7 @@ public class DaoRoupas {
 	//Inserindo Roupas (POST)
 	public static void inserirRoupas(Roupa roupas) throws Exception {
 		
-		String sql = "INSERT INTO roupas (Tipo, Marca, Tamanho, Quantidade, estoque, Preco) VALUES (?, ?, ?, ?, ?, ?)" ;
+		String sql = "INSERT INTO roupa (Tipo, Marca, Tamanho, Quantidade, estoque, Preco) VALUES (?, ?, ?, ?, ?, ?)" ;
 		
 		try (PreparedStatement ps = DB.connect().prepareStatement(sql)) {
 			
@@ -61,7 +61,7 @@ public class DaoRoupas {
 	//Atualizando os dados da roupa (UPDATE)
 	public static void atualizarRoupas(Roupa roupas) throws Exception{
 		
-		String sql = "UPDATE roupas SET Tipo = ?, Marca = ?, Tamanho = ?, Quantidade = ?, Preco = ?, estoque = ?, WHERE ID = ?";
+		String sql = "UPDATE roupa SET Tipo = ?, Marca = ?, Tamanho = ?, Quantidade = ?, Preco = ?, estoque = ?, WHERE ID = ?";
 		
 		try (PreparedStatement ps = DB.connect().prepareStatement(sql)) {
 			
@@ -81,7 +81,7 @@ public class DaoRoupas {
 	//Deletando as Roupas pelo ID (DELETE)
 	public static void excluirRoupas(int id) throws Exception {
 		
-		String sql = "DELETE FROM roupas WHERE ID = ?" ;
+		String sql = "DELETE FROM roupa WHERE ID = ?" ;
 		
 		try (PreparedStatement ps = DB.connect().prepareStatement(sql)) {
 			
