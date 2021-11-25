@@ -28,6 +28,7 @@ public class DaoVenda {
 			   int idGerado = rsKeys.getInt(1);
 			   
 			   inserirRoupasVendidas(idGerado, venda.getItensVendidos());
+			   atualizarEstoque(venda.getItensVendidos());
 		   }
 	   }
    }
@@ -44,6 +45,21 @@ public class DaoVenda {
 			   ps.setInt(2, itemVendido.getRoupa().getId_roupa());
 			   ps.setInt(3, itemVendido.getQuantidadeVendida());
 			   ps.setFloat(4, itemVendido.getPrecoVendido());
+			   
+			   ps.execute();
+		   }
+	   }
+   }
+   
+   private static void atualizarEstoque(List<ItemVenda> itensVendidos) throws Exception {
+	   String sql = "UPDATE venda SET estoque = estoque - ? WHERE id_venda = ?";
+	   
+	   for(int i = 0; i<itensVendidos.size(); i++) {
+		   ItemVenda itemVendido = itensVendidos.get(i);
+		   
+		   try (PreparedStatement ps = DB.connect().prepareStatement(sql)) {
+			   ps.setInt(1, itemVendido.getQuantidadeVendida());
+			   ps.setInt(2, itemVendido.getRoupa().getId_roupa());
 			   
 			   ps.execute();
 		   }
