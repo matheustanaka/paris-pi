@@ -11,7 +11,7 @@ import br.senac.exemplo_cadastro.Modelos.Pagamento;
 public class DaoPagamento {
 	public static void inserirPagamento (Pagamento pagamento) throws Exception{
 		
-		String sql = "INSERT INTO pagamento (pagamento) VALUES (?)";
+		String sql = "INSERT INTO pagamento (tipoPagamento) VALUES (?)";
 		
 		try (PreparedStatement ps = DB.connect().prepareStatement(sql)) {
 			ps.setString(1, pagamento.getTipoPagamento());
@@ -32,8 +32,8 @@ public class DaoPagamento {
 			while(rs.next()) {
 				Pagamento pagamento = new Pagamento ();
 				
-				pagamento.setId(rs.getInt("id"));
-				pagamento.setTipoPagamento(rs.getString("pagamento"));
+				pagamento.setId(rs.getInt("id_pagamento"));
+				pagamento.setTipoPagamento(rs.getString("tipoPagamento"));
 				
 				resultados.add(pagamento);
 				
@@ -45,7 +45,7 @@ public class DaoPagamento {
 	
 	public static void excluirPagamento(int id) throws Exception{
 			
-			String sql = "DELETE FROM pagamento WHERE id = ?";
+			String sql = "DELETE FROM pagamento WHERE id_pagamento = ?";
 			
 			try (PreparedStatement ps = DB.connect().prepareStatement(sql)) {
 				ps.setInt(1, id);
@@ -56,7 +56,7 @@ public class DaoPagamento {
 	
 	public static void atualizarPagamento(Pagamento pagamento) throws Exception{
 		
-		String sql = "UPDATE pagamento SET pagamento = ?";
+		String sql = "UPDATE pagamento SET tipoPagamento = ?";
 		
 		try (PreparedStatement ps = DB.connect().prepareStatement(sql)) {
 			
@@ -68,7 +68,7 @@ public class DaoPagamento {
 	
 	public static List<Pagamento> pesquisarPagamento(String tipoPagamento) throws Exception{
 		
-		String sql = "SELECT * FROM pagamento WHERE pagamento LIKE ?";
+		String sql = "SELECT * FROM pagamento WHERE tipoPagamento LIKE ?";
 		
 		List<Pagamento> resultados = new ArrayList<Pagamento>();
 
@@ -81,8 +81,8 @@ public class DaoPagamento {
 			while(rs.next()) {
 				Pagamento pagamento_list = new Pagamento ();
 				
-				pagamento_list.setId(rs.getInt("id"));
-				pagamento_list.setTipoPagamento(rs.getString("pagamento"));
+				pagamento_list.setId(rs.getInt("id_pagamento"));
+				pagamento_list.setTipoPagamento(rs.getString("tipoPagamento"));
 
 				
 				resultados.add(pagamento_list);
