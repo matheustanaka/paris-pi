@@ -2,7 +2,6 @@ package br.senac.exemplo_cadastro.BancoDeDados;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 
 public class DB {
 	
