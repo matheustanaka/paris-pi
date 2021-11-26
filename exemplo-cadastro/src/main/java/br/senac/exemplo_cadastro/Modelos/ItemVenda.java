@@ -1,7 +1,7 @@
 package br.senac.exemplo_cadastro.Modelos;
 
 public class ItemVenda {
-	private Roupa roupa;
+	private Roupa roupa = new Roupa();
 	private int quantidadeVendida;
 	private float precoVendido;
 	
