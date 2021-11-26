@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Venda {
-	private Integer id;
+	private Integer id_venda;
 	private Integer numeroVenda;
 	private LocalDate dataVenda;
 	private List<ItemVenda> itensVendidos = new ArrayList<ItemVenda>();
@@ -19,12 +19,6 @@ public class Venda {
 		this.itensVendidos = itensVendidos;
 	}
 
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
 	public LocalDate getDataVenda() {
 		return dataVenda;
 	}
@@ -48,6 +42,12 @@ public class Venda {
 	}
 	public void setPagamento(Pagamento pagamento) {
 		this.pagamento = pagamento;
+	}
+	public Integer getId_venda() {
+		return id_venda;
+	}
+	public void setId_venda(Integer id_venda) {
+		this.id_venda = id_venda;
 	}
 	
 }
