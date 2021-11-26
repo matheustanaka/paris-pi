@@ -1,7 +1,6 @@
 package br.senac.exemplo_cadastro.DAO;
 
 import java.sql.PreparedStatement;
-
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
