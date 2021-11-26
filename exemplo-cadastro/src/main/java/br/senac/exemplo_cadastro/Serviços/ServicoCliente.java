@@ -1,6 +1,5 @@
 package br.senac.exemplo_cadastro.Serviços;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import br.senac.exemplo_cadastro.DAO.DaoCliente;
@@ -17,8 +16,6 @@ import jakarta.ws.rs.core.MediaType;
 
 @Path("cliente")
 public class ServicoCliente {
-
-	private static List<Cliente> lista = new ArrayList<Cliente>();
 	
 	//Enviando Clientes
 	@POST
