@@ -1,11 +1,8 @@
 package br.senac.exemplo_cadastro.Serviços;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import br.senac.exemplo_cadastro.DAO.DaoCliente;
 import br.senac.exemplo_cadastro.DAO.DaoPagamento;
-import br.senac.exemplo_cadastro.Modelos.Cliente;
 import br.senac.exemplo_cadastro.Modelos.Pagamento;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
@@ -19,8 +16,6 @@ import jakarta.ws.rs.core.MediaType;
 
 @Path("pagamento")
 public class ServicoPagamento {
-	
-		private static List<Pagamento> lista = new ArrayList<Pagamento>();
 		
 		//Inserindo Pagamento
 		@POST
