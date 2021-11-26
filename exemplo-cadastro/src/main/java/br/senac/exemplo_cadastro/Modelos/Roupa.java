@@ -2,7 +2,7 @@ package br.senac.exemplo_cadastro.Modelos;
 
 public class Roupa {
 	
-	private int id_roupa;
+	private int id;
 	private String tipoRoupa;
 	private String marca;
 	private String tamanho;
@@ -48,11 +48,11 @@ public class Roupa {
 	public void setEstoque(int estoque) {
 		this.estoque = estoque;
 	}
-	public int getId_roupa() {
-		return id_roupa;
+	public int getId() {
+		return id;
 	}
-	public void setId_roupa(int id_roupa) {
-		this.id_roupa = id_roupa;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 }
