@@ -19,7 +19,7 @@ public class DaoVenda {
 		   ps.setInt(1, venda.getNumeroVenda());
 		   ps.setDate(2, Date.valueOf(venda.getDataVenda()));
 		   ps.setInt(3, venda.getCliente().getId());
-		   ps.setInt(4, venda.getPagamento().getId());
+		   ps.setInt(4, venda.getPagamento().getId_pagamento());
 		   
 		   ps.execute();
 		   
@@ -42,7 +42,7 @@ public class DaoVenda {
 		   try(PreparedStatement ps = DB.connect().prepareStatement(sql)) {
 			   
 			   ps.setInt(1, idVenda);
-			   ps.setInt(2, itemVendido.getRoupa().getId_roupa());
+			   ps.setInt(2, itemVendido.getRoupa().getId());
 			   ps.setInt(3, itemVendido.getQuantidadeVendida());
 			   ps.setFloat(4, itemVendido.getPrecoVendido());
 			   
@@ -52,14 +52,14 @@ public class DaoVenda {
    }
    
    private static void atualizarEstoque(List<ItemVenda> itensVendidos) throws Exception {
-	   String sql = "UPDATE venda SET estoque = estoque - ? WHERE id_venda = ?";
+	   String sql = "UPDATE roupa SET estoque = estoque - ? WHERE id_roupa = ?";
 	   
 	   for(int i = 0; i<itensVendidos.size(); i++) {
 		   ItemVenda itemVendido = itensVendidos.get(i);
 		   
 		   try (PreparedStatement ps = DB.connect().prepareStatement(sql)) {
 			   ps.setInt(1, itemVendido.getQuantidadeVendida());
-			   ps.setInt(2, itemVendido.getRoupa().getId_roupa());
+			   ps.setInt(2, itemVendido.getRoupa().getId());
 			   
 			   ps.execute();
 		   }
