@@ -1,12 +1,8 @@
 package br.senac.exemplo_cadastro.Serviços;
 
-import jakarta.ws.rs.Path;
-
 import java.util.List;
 
-import br.senac.exemplo_cadastro.DAO.DaoCliente;
 import br.senac.exemplo_cadastro.DAO.DaoRoupas;
-import br.senac.exemplo_cadastro.Modelos.Cliente;
 import br.senac.exemplo_cadastro.Modelos.Roupa;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
