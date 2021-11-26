@@ -1,15 +1,16 @@
 package br.senac.exemplo_cadastro.Modelos;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Venda {
 	private Integer id;
 	private Integer numeroVenda;
 	private LocalDate dataVenda;
-	private List<ItemVenda> itensVendidos;
-	private Cliente cliente;
-	private Pagamento pagamento;
+	private List<ItemVenda> itensVendidos = new ArrayList<ItemVenda>();
+	private Cliente cliente = new Cliente ();
+	private Pagamento pagamento = new Pagamento();
 	
 	public List<ItemVenda> getItensVendidos() {
 		return itensVendidos;
