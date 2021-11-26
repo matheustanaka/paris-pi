@@ -1,14 +1,11 @@
 package br.senac.exemplo_cadastro.DAO;
 
 import java.sql.PreparedStatement;
-
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import br.senac.exemplo_cadastro.BancoDeDados.DB;
-import br.senac.exemplo_cadastro.Modelos.Cliente;
 import br.senac.exemplo_cadastro.Modelos.Roupa;
 
 public class DaoRoupas {
@@ -24,7 +21,7 @@ public class DaoRoupas {
 				while(rs.next()) {
 					Roupa roupas = new Roupa ();
 					
-					roupas.setId_roupa(rs.getInt("id_roupa"));
+					roupas.setId(rs.getInt("id_roupa"));
 					roupas.setMarca(rs.getString("Marca"));
 					roupas.setQuantidade(rs.getInt("Quantidade"));
 					roupas.setTamanho(rs.getString("Tamanho"));
@@ -71,7 +68,7 @@ public class DaoRoupas {
 			ps.setInt(4, roupas.getQuantidade());
 			ps.setFloat(5, roupas.getPreco());
 			ps.setInt(6, roupas.getEstoque());
-			ps.setInt(7, roupas.getId_roupa());
+			ps.setInt(7, roupas.getId());
 			
 			
 			ps.execute();
