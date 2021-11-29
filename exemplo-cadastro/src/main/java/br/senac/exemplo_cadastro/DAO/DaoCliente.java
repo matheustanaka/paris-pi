@@ -52,7 +52,7 @@ public class DaoCliente {
 	
 	public static void excluir(int id) throws Exception{
 			
-			String sql = "DELETE FROM cliente WHERE id = ?";
+			String sql = "DELETE FROM cliente WHERE id_cliente = ?";
 			
 			try (PreparedStatement ps = DB.connect().prepareStatement(sql)) {
 				ps.setInt(1, id);
