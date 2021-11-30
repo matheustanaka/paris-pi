@@ -10,12 +10,13 @@ import java.util.List;
 import br.senac.exemplo_cadastro.BancoDeDados.DB;
 import br.senac.exemplo_cadastro.Modelos.Cliente;
 import br.senac.exemplo_cadastro.Modelos.ItemVenda;
+import br.senac.exemplo_cadastro.Modelos.Pagamento;
 import br.senac.exemplo_cadastro.Modelos.Roupa;
 import br.senac.exemplo_cadastro.Modelos.Venda;
 
 public class DaoVenda {
    public static void fazerVenda(Venda venda) throws Exception {
-	   String sql = "INSERT INTO venda (numero_venda, data_venda, id_cliente, id_pagamento) VALUES (?, ?, ?, ?)";
+	   String sql = "INSERT INTO venda (numero_venda, data_venda, id_cliente, id_pagamento, id_roupa) VALUES (?, ?, ?, ?, ?)";
    
    
 	   try (PreparedStatement ps = DB.connect().prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
@@ -71,11 +72,12 @@ public class DaoVenda {
    }
    
    public static List<Venda> gerarRelatorio(LocalDate dataInicial, LocalDate dataFinal) throws Exception{
-	   String sql = "SELECT v.numero_venda, v.data_venda, c.nome nome_cliente, r.Tipo, r.Marca, r.Preco, vr.preco_vendido, vr.quantidade_vendida FROM venda v "
-	   		+ "INNER JOIN cliente c ON v.id_cliente = c.id_cliente "
-	   		+ "INNER JOIN venda_roupa vr ON v.id_venda = vr.id_venda "
-	   		+ "INNER JOIN roupa r ON vr.id_roupa = r.id_roupa "
-	   		+ "WHERE v.data_venda >= ? AND v.data_venda <= ?";
+	   String sql = "SELECT c.id_cliente, c.nome nome_cliente, v.numero_venda, v.data_venda, r.id_roupa, r.Tipo roupa_comprada, vr.preco_vendido, r.estoque, vr.quantidade_vendida, p.tipoPagamento FROM venda v "
+		   		+ "INNER JOIN cliente c ON v.id_cliente = c.id_cliente "
+		   		+ "INNER JOIN venda_roupa vr ON v.id_venda = vr.id_venda "
+		   		+ "INNER JOIN roupa r ON vr.id_roupa = r.id_roupa "
+		   		+ "INNER JOIN pagamento p ON v.id_pagamento = p.id_pagamento "
+		   		+ "WHERE v.data_venda >= ? AND v.data_venda <= ?";
 	   
 	   List<Venda> resultados = new ArrayList<Venda>();
 	   
@@ -96,6 +98,7 @@ public class DaoVenda {
 				   venda.setDataVenda(rs.getDate("data_venda").toLocalDate());
 				   
 				   Cliente cliente = new Cliente();
+				   cliente.setId(rs.getInt("id_cliente"));
 				   cliente.setNome(rs.getString("nome_cliente"));
 				   
 				   venda.setCliente(cliente);
@@ -103,9 +106,12 @@ public class DaoVenda {
 			   }		   
 			   
 			   Roupa roupa = new Roupa();
-			   roupa.setTipoRoupa(rs.getString("Tipo"));
-			   roupa.setMarca(rs.getString("Marca"));
-			   roupa.setPreco(rs.getFloat("Preco"));
+			   roupa.setId(rs.getInt("id_roupa"));
+			   roupa.setTipoRoupa(rs.getString("roupa_comprada"));
+			   roupa.setEstoque(rs.getInt("estoque"));
+			   
+			   Pagamento pagamento = new Pagamento();
+			   pagamento.setTipoPagamento(rs.getString("tipoPagamento"));
 			   
 			   ItemVenda itemVenda = new ItemVenda();
 			   itemVenda.setPrecoVendido(rs.getFloat("preco_vendido"));
