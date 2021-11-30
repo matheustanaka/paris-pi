@@ -16,7 +16,7 @@ import br.senac.exemplo_cadastro.Modelos.Venda;
 
 public class DaoVenda {
    public static void fazerVenda(Venda venda) throws Exception {
-	   String sql = "INSERT INTO venda (numero_venda, data_venda, id_cliente, id_pagamento, id_roupa) VALUES (?, ?, ?, ?, ?)";
+	   String sql = "INSERT INTO venda (numero_venda, data_venda, id_cliente) VALUES (?, ?, ?)";
    
    
 	   try (PreparedStatement ps = DB.connect().prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
@@ -24,7 +24,7 @@ public class DaoVenda {
 		   ps.setInt(1, venda.getNumeroVenda());
 		   ps.setDate(2, Date.valueOf(venda.getDataVenda()));
 		   ps.setInt(3, venda.getCliente().getId());
-		   ps.setInt(4, venda.getPagamento().getId_pagamento());
+		   
 		   
 		   ps.execute();
 		   
