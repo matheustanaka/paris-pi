@@ -6,7 +6,6 @@ public class Roupa {
 	private String tipoRoupa;
 	private String marca;
 	private String tamanho;
-	private int quantidade;
 	private float preco;
 	private int estoque;
 	
@@ -29,12 +28,6 @@ public class Roupa {
 	}
 	public void setMarca(String marca) {
 		this.marca = marca;
-	}
-	public int getQuantidade() {
-		return quantidade;
-	}
-	public void setQuantidade(int quantidade) {
-		this.quantidade = quantidade;
 	}
 	public float getPreco() {
 		return preco;
