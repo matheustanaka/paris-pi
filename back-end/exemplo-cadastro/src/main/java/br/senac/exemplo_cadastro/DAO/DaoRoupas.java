@@ -23,7 +23,6 @@ public class DaoRoupas {
 					
 					roupas.setId(rs.getInt("id_roupa"));
 					roupas.setMarca(rs.getString("Marca"));
-					roupas.setQuantidade(rs.getInt("Quantidade"));
 					roupas.setTamanho(rs.getString("Tamanho"));
 					roupas.setTipoRoupa(rs.getString("Tipo"));
 					roupas.setEstoque(rs.getInt("Estoque"));
@@ -40,16 +39,15 @@ public class DaoRoupas {
 	//Inserindo Roupas (POST)
 	public static void inserirRoupas(Roupa roupas) throws Exception {
 		
-		String sql = "INSERT INTO roupa (Tipo, Marca, Tamanho, Quantidade, estoque, Preco) VALUES (?, ?, ?, ?, ?, ?)" ;
+		String sql = "INSERT INTO roupa (Tipo, Marca, Tamanho, estoque, Preco) VALUES (?, ?, ?, ?, ?)" ;
 		
 		try (PreparedStatement ps = DB.connect().prepareStatement(sql)) {
 			
 			ps.setString(1, roupas.getTipoRoupa());
 			ps.setString(2, roupas.getMarca());
 			ps.setString(3, roupas.getTamanho());
-			ps.setInt(4, roupas.getQuantidade());
-			ps.setInt(5, roupas.getEstoque());
-			ps.setFloat(6, roupas.getPreco());
+			ps.setInt(4, roupas.getEstoque());
+			ps.setFloat(5, roupas.getPreco());
 			
 			ps.execute();
 			
@@ -58,17 +56,16 @@ public class DaoRoupas {
 	//Atualizando os dados da roupa (UPDATE)
 	public static void atualizarRoupas(Roupa roupas) throws Exception{
 		
-		String sql = "UPDATE roupa SET Tipo = ?, Marca = ?, Tamanho = ?, Quantidade = ?, Preco = ?, estoque = ? WHERE id_roupa = ?";
+		String sql = "UPDATE roupa SET Tipo = ?, Marca = ?, Tamanho = ?, Preco = ?, estoque = ? WHERE id_roupa = ?";
 		
 		try (PreparedStatement ps = DB.connect().prepareStatement(sql)) {
 			
 			ps.setString(1, roupas.getTipoRoupa());
 			ps.setString(2, roupas.getMarca());
 			ps.setString(3, roupas.getTamanho());
-			ps.setInt(4, roupas.getQuantidade());
-			ps.setFloat(5, roupas.getPreco());
-			ps.setInt(6, roupas.getEstoque());
-			ps.setInt(7, roupas.getId());
+			ps.setFloat(4, roupas.getPreco());
+			ps.setInt(5, roupas.getEstoque());
+			ps.setInt(6, roupas.getId());
 			
 			
 			ps.execute();
