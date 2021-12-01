@@ -56,11 +56,12 @@ public class DaoPagamento {
 	
 	public static void atualizarPagamento(Pagamento pagamento) throws Exception{
 		
-		String sql = "UPDATE pagamento SET tipoPagamento = ?";
+		String sql = "UPDATE pagamento SET tipoPagamento = ? WHERE id_pagamento = ?";
 		
 		try (PreparedStatement ps = DB.connect().prepareStatement(sql)) {
 			
 			ps.setString(1, pagamento.getTipoPagamento());
+			ps.setInt(2, pagamento.getId_pagamento());
 			
 			ps.execute();
 		}
