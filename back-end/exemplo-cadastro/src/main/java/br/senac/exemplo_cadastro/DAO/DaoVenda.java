@@ -72,11 +72,10 @@ public class DaoVenda {
    }
    
    public static List<Venda> gerarRelatorio(LocalDate dataInicial, LocalDate dataFinal) throws Exception{
-	   String sql = "SELECT c.id_cliente, c.nome nome_cliente, v.numero_venda, v.data_venda, r.id_roupa, r.Tipo roupa_comprada, vr.preco_vendido, r.estoque, vr.quantidade_vendida, p.tipoPagamento FROM venda v "
+	   String sql = "SELECT c.id_cliente, c.nome nome_cliente, v.numero_venda, v.data_venda, r.id_roupa, r.Tipo roupa_comprada, vr.preco_vendido, r.estoque, r.Preco, vr.quantidade_vendida FROM venda v "
 		   		+ "INNER JOIN cliente c ON v.id_cliente = c.id_cliente "
 		   		+ "INNER JOIN venda_roupa vr ON v.id_venda = vr.id_venda "
 		   		+ "INNER JOIN roupa r ON vr.id_roupa = r.id_roupa "
-		   		+ "INNER JOIN pagamento p ON v.id_pagamento = p.id_pagamento "
 		   		+ "WHERE v.data_venda >= ? AND v.data_venda <= ?";
 	   
 	   List<Venda> resultados = new ArrayList<Venda>();
@@ -108,10 +107,8 @@ public class DaoVenda {
 			   Roupa roupa = new Roupa();
 			   roupa.setId(rs.getInt("id_roupa"));
 			   roupa.setTipoRoupa(rs.getString("roupa_comprada"));
+			   roupa.setPreco(rs.getFloat("Preco"));;
 			   roupa.setEstoque(rs.getInt("estoque"));
-			   
-			   Pagamento pagamento = new Pagamento();
-			   pagamento.setTipoPagamento(rs.getString("tipoPagamento"));
 			   
 			   ItemVenda itemVenda = new ItemVenda();
 			   itemVenda.setPrecoVendido(rs.getFloat("preco_vendido"));
