@@ -16,7 +16,7 @@ import br.senac.exemplo_cadastro.Modelos.Venda;
 
 public class DaoVenda {
    public static void fazerVenda(Venda venda) throws Exception {
-	   String sql = "INSERT INTO venda (numero_venda, data_venda, id_cliente) VALUES (?, ?, ?)";
+	   String sql = "INSERT INTO venda (numero_venda, data_venda, id_cliente, id_pagamento) VALUES (?, ?, ?, ?)";
    
    
 	   try (PreparedStatement ps = DB.connect().prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
@@ -24,6 +24,7 @@ public class DaoVenda {
 		   ps.setInt(1, venda.getNumeroVenda());
 		   ps.setDate(2, Date.valueOf(venda.getDataVenda()));
 		   ps.setInt(3, venda.getCliente().getId());
+		   ps.setInt(4, venda.getPagamento().getId_pagamento());
 		   
 		   
 		   ps.execute();
@@ -72,10 +73,11 @@ public class DaoVenda {
    }
    
    public static List<Venda> gerarRelatorio(LocalDate dataInicial, LocalDate dataFinal) throws Exception{
-	   String sql = "SELECT c.id_cliente, c.nome nome_cliente, v.numero_venda, v.data_venda, r.id_roupa, r.Tipo roupa_comprada, vr.preco_vendido, r.estoque, r.Preco, vr.quantidade_vendida FROM venda v "
+	   String sql = "SELECT v.numero_venda, v.data_venda, c.id_cliente, c.nome nome_cliente, r.id_roupa, r.Preco, r.Tipo, r.estoque, p.id_pagamento, p.tipoPagamento, vr.preco_vendido, vr.quantidade_vendida FROM venda v "
 		   		+ "INNER JOIN cliente c ON v.id_cliente = c.id_cliente "
 		   		+ "INNER JOIN venda_roupa vr ON v.id_venda = vr.id_venda "
 		   		+ "INNER JOIN roupa r ON vr.id_roupa = r.id_roupa "
+		   		+ "INNER JOIN pagamento p ON v.id_pagamento = p.id_pagamento "
 		   		+ "WHERE v.data_venda >= ? AND v.data_venda <= ?";
 	   
 	   List<Venda> resultados = new ArrayList<Venda>();
@@ -106,9 +108,13 @@ public class DaoVenda {
 			   
 			   Roupa roupa = new Roupa();
 			   roupa.setId(rs.getInt("id_roupa"));
-			   roupa.setTipoRoupa(rs.getString("roupa_comprada"));
+			   roupa.setTipoRoupa(rs.getString("Tipo"));
 			   roupa.setPreco(rs.getFloat("Preco"));;
 			   roupa.setEstoque(rs.getInt("estoque"));
+			   
+			   Pagamento pagamento = new Pagamento();
+			   pagamento.setId_pagamento(rs.getInt("id_pagamento"));
+			   pagamento.setTipoPagamento(rs.getString("tipoPagamento"));
 			   
 			   ItemVenda itemVenda = new ItemVenda();
 			   itemVenda.setPrecoVendido(rs.getFloat("preco_vendido"));
@@ -116,6 +122,7 @@ public class DaoVenda {
 			   
 			   itemVenda.setRoupa(roupa);
 			   
+			   venda.setPagamento(pagamento);
 			   venda.getItensVendidos().add(itemVenda);
 			   
 	   }
