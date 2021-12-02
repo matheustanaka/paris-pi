@@ -10,6 +10,7 @@ public class Venda {
 	private LocalDate dataVenda;
 	private List<ItemVenda> itensVendidos = new ArrayList<ItemVenda>();
 	private Cliente cliente = new Cliente ();
+	private Pagamento pagamento = new Pagamento ();
 	
 	public List<ItemVenda> getItensVendidos() {
 		return itensVendidos;
@@ -41,6 +42,12 @@ public class Venda {
 	}
 	public void setId_venda(Integer id_venda) {
 		this.id_venda = id_venda;
+	}
+	public Pagamento getPagamento() {
+		return pagamento;
+	}
+	public void setPagamento(Pagamento pagamento) {
+		this.pagamento = pagamento;
 	}
 	
 }
