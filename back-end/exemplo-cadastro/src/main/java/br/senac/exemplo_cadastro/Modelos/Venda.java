@@ -4,9 +4,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.json.bind.annotation.JsonbDateFormat;
+
 public class Venda {
 	private Integer id_venda;
 	private Integer numeroVenda;
+	@JsonbDateFormat("dd/MM/yyyy")
 	private LocalDate dataVenda;
 	private List<ItemVenda> itensVendidos = new ArrayList<ItemVenda>();
 	private Cliente cliente = new Cliente ();
