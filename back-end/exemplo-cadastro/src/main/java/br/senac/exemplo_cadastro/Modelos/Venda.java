@@ -10,7 +10,7 @@ public class Venda {
 	private Integer id_venda;
 	private Integer numeroVenda;
 	@JsonbDateFormat("dd/MM/yyyy")
-	private LocalDate dataVenda;
+	private LocalDate dataVenda = LocalDate.now();
 	private List<ItemVenda> itensVendidos = new ArrayList<ItemVenda>();
 	private Cliente cliente = new Cliente ();
 	private Pagamento pagamento = new Pagamento ();
